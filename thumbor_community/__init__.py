@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from thumbor.context.Context import Context, ContextImporter
+from thumbor.context import Context, ContextImporter
 from thumbor.importer import Importer
 
 
 class CommunityExtensions(object):
 
     @classmethod
-    def register_module(cls, config, klass, multiple=False):
-        CommunityContextImporter.register(config.lower())
-        CommunityImporter.register(config, klass, multiple)
+    def register_module(cls, config_key, class_name, multiple=False):
+        # TODO Maybe pass in a CommunityModule object instead of values?
+
+        CommunityContextImporter.register(config_key.lower())
+        CommunityImporter.register_module(config_key, class_name, multiple)
 
 
 class CommunityContextImporter(ContextImporter):
