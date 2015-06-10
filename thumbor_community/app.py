@@ -13,11 +13,11 @@ class App(tornado.web.Application):
         '''
         :param context: `Context` instance
         '''
+
         self.context = context
 
         if self.context.config.get('COMMUNITY_EXTENSIONS', None):
             for extension in self.context.config.get('COMMUNITY_EXTENSIONS'):
-                print("Loading %s" % extension)
                 Extensions.load(extension)
 
         super(App, self).__init__(self.get_handlers())
@@ -31,5 +31,4 @@ class App(tornado.web.Application):
             for handler in extensions.handlers:
                 handlers.append(handler)
 
-        print(handlers)
         return handlers
