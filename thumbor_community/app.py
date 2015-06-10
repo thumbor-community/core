@@ -25,8 +25,7 @@ class App(tornado.web.Application):
         Importer.import_community_modules(context.modules.importer)
 
         self.context = Context.from_context(context)
-        self.context.modules.importer.import_community_modules()
-
+        
         if self.context.config.get('COMMUNITY_MONKEYPATCH', True):
             logger.debug("Monkey patching ContextHandler.initialize")
             # Monkey patch the ContextHandler.initialize method to generate a
