@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from thumbor.context import Context as ThumborContext
+from thumbor_community.context_importer import ContextImporter
 
 
 class Context(ThumborContext):
@@ -23,7 +24,8 @@ class Context(ThumborContext):
         :param request_handler:
         '''
 
-        super(Context, self).__init__(
+        ThumborContext.__init__(
+            self, 
             server=server,
             config=config,
             importer=None,  # Always load our ContextImporter
@@ -33,5 +35,3 @@ class Context(ThumborContext):
         # Load our ContextImporter
         if importer:
             self.modules = ContextImporter(self, importer)
-
-
