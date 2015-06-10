@@ -2,6 +2,7 @@
 
 from thumbor.context import ContextImporter as ThumborContextImporter
 from thumbor.utils import logger
+from thumbor_community.importer import Importer
 
 
 class ContextImporter(ThumborContextImporter):

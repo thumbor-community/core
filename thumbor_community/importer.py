@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+from thumbor.utils import logger
 from thumbor.importer import Importer as ThumborImporter
 
 
-class Importer(ThumborImporter):
+class Importer(object):
 
     _community_modules = []
 
@@ -14,20 +15,22 @@ class Importer(ThumborImporter):
             multiple=multiple
         ))
 
-    def __init__(self, config):
-        '''
-        :param config:
-        '''
-        super(Importer, self).__init__(config)
+    @classmethod
+    def import_community_modules(cls, instance):
+        for module in cls._community_modules:
+            setattr(instance, module['config_key'].lower(), None)
 
         # Autoload
-        for module in self._community_modules:
-            setattr(self, module.config_key.lower(), None)
+        for module in cls._community_modules:
+            config_key = module['config_key']
 
-    def import_modules(self):
-        super(Importer, self).import_modules()
-
-        # Autoload
-        for module in self._community_modules:
-            if hasattr(self.config, module.config_key):
-                self.import_item(module.config_key, module.class_name)
+            if hasattr(instance.config, config_key):
+                instance.import_item(config_key, module['class_name'])
+            else:
+                logger.warning(
+                    "Configuration not found for module " \
+                    "{config_key} {config_name}".format(
+                        config_key=config_key,
+                        class_name=module['class_name']
+                    )
+                )

@@ -8,6 +8,7 @@ from thumbor.handlers import ContextHandler
 from thumbor.utils import logger
 from thumbor_community import Extensions
 from thumbor_community.context import Context
+from thumbor_community.importer import Importer
 
 
 class App(tornado.web.Application):
@@ -17,11 +18,14 @@ class App(tornado.web.Application):
         :param context: `Context` instance
         '''
 
-        self.context = context
-
-        if self.context.config.get('COMMUNITY_EXTENSIONS', None):
-            for extension in self.context.config.get('COMMUNITY_EXTENSIONS'):
+        if context.config.get('COMMUNITY_EXTENSIONS', None):
+            for extension in context.config.get('COMMUNITY_EXTENSIONS'):
                 Extensions.load(extension)
+
+        Importer.import_community_modules(context.modules.importer)
+
+        self.context = Context.from_context(context)
+        self.context.modules.importer.import_community_modules()
 
         if self.context.config.get('COMMUNITY_MONKEYPATCH', True):
             logger.debug("Monkey patching ContextHandler.initialize")
@@ -30,13 +34,10 @@ class App(tornado.web.Application):
 
             def initialize(self, context):
                 '''Initialize a new Context object
-                :param context:
+                :param context: thumbor.context.Context
                 '''
-
-                self.context = Context(
-                    context.server,
-                    context.config,
-                    context.modules.importer,
+                self.context = Context.from_context(
+                    context,
                     request_handler=self
                 )
 

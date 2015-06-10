@@ -35,3 +35,12 @@ class Context(ThumborContext):
         # Load our ContextImporter
         if importer:
             self.modules = ContextImporter(self, importer)
+
+    @classmethod
+    def from_context(cls, context, request_handler=None):
+        return Context(
+            context.server,
+            context.config,
+            context.modules.importer,
+            request_handler=request_handler
+        )
