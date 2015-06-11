@@ -29,4 +29,4 @@ $ thumbor --conf=my_configuration_file -a thumbor_community.app.App
 
 ## Documentation
 
-Documentation is ongoing. While we find a way to publish it, you can access it by executing ``make docs`` from the root of the repository.
+Documentation is ongoing. You may see it at [Read the Docs](http://thumbor-community-core.readthedocs.org/en/latest/). Feel free to contribute to improve it!
