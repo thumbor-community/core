@@ -3,8 +3,8 @@
 import importlib
 from thumbor.utils import logger
 
-from thumbor_community.context_importer import ContextImporter
-from thumbor_community.importer import Importer
+from tc_core.context_importer import ContextImporter
+from tc_core.importer import Importer
 
 
 class Extensions(object):

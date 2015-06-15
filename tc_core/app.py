@@ -6,9 +6,9 @@ import tornado.ioloop
 from thumbor.handlers.healthcheck import HealthcheckHandler
 from thumbor.handlers import ContextHandler
 from thumbor.utils import logger
-from thumbor_community import Extensions
-from thumbor_community.context import Context
-from thumbor_community.importer import Importer
+from tc_core import Extensions
+from tc_core.context import Context
+from tc_core.importer import Importer
 
 
 class App(tornado.web.Application):
@@ -25,7 +25,7 @@ class App(tornado.web.Application):
         Importer.import_community_modules(context.modules.importer)
 
         self.context = Context.from_context(context)
-        
+
         if self.context.config.get('COMMUNITY_MONKEYPATCH', True):
             logger.debug("Monkey patching ContextHandler.initialize")
             # Monkey patch the ContextHandler.initialize method to generate a
