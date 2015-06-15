@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from thumbor.context import Context as ThumborContext
-from thumbor_community.context_importer import ContextImporter
+from tc_core.context_importer import ContextImporter
 
 
 class Context(ThumborContext):
