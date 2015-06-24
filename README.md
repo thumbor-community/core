@@ -24,7 +24,7 @@ COMMUNITY_EXTENSIONS = [
 ```
 7. Launch thumbor with the Thumbor Community custom application:
 ```bash
-$ thumbor --conf=my_configuration_file -a thumbor_community.app.App
+$ thumbor --conf=my_configuration_file -a tc_core.app.App
 ```
 
 ## Documentation
