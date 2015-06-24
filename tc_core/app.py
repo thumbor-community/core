@@ -7,7 +7,7 @@
 import tornado.web
 import tornado.ioloop
 
-from thumbor.handlers.healthcheck import HealthcheckHandler
+from thumbor.app import ThumborServiceApp
 from thumbor.handlers import ContextHandler
 from thumbor.utils import logger
 from tc_core import Extensions
@@ -15,7 +15,7 @@ from tc_core.context import Context
 from tc_core.importer import Importer
 
 
-class App(tornado.web.Application):
+class App(ThumborServiceApp):
 
     def __init__(self, context):
         '''
@@ -46,15 +46,13 @@ class App(tornado.web.Application):
 
             ContextHandler.initialize = initialize
 
-        super(App, self).__init__(self.get_handlers())
+        super(App, self).__init__(context)
 
     def get_handlers(self):
         '''Return a list of tornado web handlers.
         '''
 
-        handlers = [
-            (r'/healthcheck', HealthcheckHandler)
-        ]
+        handlers = []
 
         for extensions in Extensions.extensions:
             for handler in extensions.handlers:
@@ -68,5 +66,7 @@ class App(tornado.web.Application):
                         handler[2]['context'] = self.context
 
                 handlers.append(handler)
+
+        handlers.extend(super(App, self).get_handlers())
 
         return handlers
