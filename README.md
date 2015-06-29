@@ -1,8 +1,11 @@
 # Thumbor Community / Core
 
+![CircleCI](https://circleci.com/gh/thumbor-community/core.png)
+
 This is the main package of the Thumbor Community. This will handle the loading of custom extensions to [Thumbor](https://github.com/thumbor/thumbor).
 
 Please note that this is still in beta stage for now.
+
 
 ## Quick setup
 
