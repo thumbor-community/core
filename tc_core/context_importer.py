@@ -33,6 +33,12 @@ class ContextImporter(ThumborContextImporter):
         # Dynamically load registered modules
         for name in self._community_modules:
             if hasattr(importer, name):
+                init = getattr(importer, name)
+                if not hasattr(init, '__call__'):
+                    logger.error("Attr {attr} of object {obj} is not callable".format(
+                        attr=name,
+                        obj=importer,
+                    ))
                 instance = getattr(importer, name)(context)
                 setattr(self, name, instance)
             else:
