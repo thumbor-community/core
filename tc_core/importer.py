@@ -32,9 +32,8 @@ class Importer(object):
             if hasattr(instance.config, config_key):
                 instance.import_item(config_key, module['class_name'])
             else:
-                logger.warning(
-                    "Configuration not found for module " \
-                    "{config_key} {config_name}".format(
+                logger.info(
+                    "Configuration `{config_key}` not found for module (using default value: `{class_name}`)".format(
                         config_key=config_key,
                         class_name=module['class_name']
                     )

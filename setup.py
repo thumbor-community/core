@@ -17,6 +17,12 @@ setup(
     install_requires=[
         'thumbor',
     ],
+    extras_require={
+        'tests': [
+            'pyvows',
+            'coverage',
+        ],
+    },
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
