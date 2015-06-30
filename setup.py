@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='tc_core',
-    version='0.2',
+    version='0.2.1',
     url='http://github.com/thumbor_community/core',
     license='MIT',
     author='Thumbor Community',
