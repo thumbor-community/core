@@ -5,6 +5,7 @@
 # found in the LICENSE file.
 
 from thumbor.context import Context as ThumborContext
+from thumbor.filters import FiltersFactory
 from tc_core.context_importer import ContextImporter
 
 
@@ -29,7 +30,7 @@ class Context(ThumborContext):
         '''
 
         ThumborContext.__init__(
-            self, 
+            self,
             server=server,
             config=config,
             importer=None,  # Always load our ContextImporter
@@ -39,6 +40,7 @@ class Context(ThumborContext):
         # Load our ContextImporter
         if importer:
             self.modules = ContextImporter(self, importer)
+            self.filters_factory = FiltersFactory(self.modules.filters)
 
     @classmethod
     def from_context(cls, context, request_handler=None):
