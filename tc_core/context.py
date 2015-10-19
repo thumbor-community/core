@@ -6,6 +6,7 @@
 
 from thumbor.context import Context as ThumborContext
 from thumbor.filters import FiltersFactory
+from thumbor.metrics.logger_metrics import Metrics
 from tc_core.context_importer import ContextImporter
 
 
@@ -41,6 +42,10 @@ class Context(ThumborContext):
         if importer:
             self.modules = ContextImporter(self, importer)
             self.filters_factory = FiltersFactory(self.modules.filters)
+            if importer.metrics:
+                self.metrics = importer.metrics(config)
+            else:
+                self.metrics = Metrics(config)
 
     @classmethod
     def from_context(cls, context, request_handler=None):

@@ -14,6 +14,7 @@ class Importer(object):
     result_storage = False
     upload_photo_storage = False
     loader = False
+    url_signer = False
     detectors = []
     filters = []
     optimizers = []
