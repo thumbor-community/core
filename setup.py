@@ -15,6 +15,7 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
+        'libthumbor>=1.3.2',
         'thumbor>=5.0.6',
     ],
     extras_require={

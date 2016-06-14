@@ -6,7 +6,7 @@
 
 import re
 
-from thumbor.url import Url
+from libthumbor.url import Url
 import tornado.web
 
 
