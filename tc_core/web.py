@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2015, thumbor-community
+# Copyright (c) 2017, thumbor-community
 # Use of this source code is governed by the MIT license that can be
 # found in the LICENSE file.
 
 import re
-
 from libthumbor.url import Url
 import tornado.web
 
+if hasattr(tornado.web, '_unquote_or_none'):
+    from tornado.web import _unquote_or_none
+else:
+    from tornado.routing import _unquote_or_none
 
 class RequestParser(object):
 
@@ -34,11 +37,11 @@ class RequestParser(object):
             # or groupdict but not both.
             if cls._url_regex.groupindex:
                 parameters = dict(
-                    (str(k), tornado.web._unquote_or_none(v))
+                    (str(k), _unquote_or_none(v))
                     for (k, v) in match.groupdict().items())
             else:
                 parameters = [
-                    tornado.web._unquote_or_none(s)
+                    _unquote_or_none(s)
                     for s in match.groups()
                 ]
         else:
