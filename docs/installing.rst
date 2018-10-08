@@ -19,7 +19,7 @@ Installing Thumbor Community Core
 
 7. Launch thumbor with the Thumbor Community custom application:
 ::
-    $ thumbor --conf=my_configuration_file -a thumbor_community.app.App
+    $ thumbor --conf=my_configuration_file -a tc_core.app.App
 
 
 .. _`Thumbor repository`: https://github.com/thumbor/thumbor
