@@ -18,6 +18,10 @@ class Importer(object):
     detectors = []
     filters = []
     optimizers = []
+    compatibility_legacy_loader = None
+    compatibility_legacy_storage = None
+    compatibility_legacy_result_storage = None
+
 
 class Extension(object):
 

@@ -8,7 +8,7 @@ from thumbor.utils import logger
 from thumbor.importer import Importer as ThumborImporter
 
 
-class Importer(object):
+class Importer:
 
     _community_modules = []
 
