@@ -13,7 +13,7 @@ if hasattr(tornado.web, '_unquote_or_none'):
 else:
     from tornado.routing import _unquote_or_none
 
-class RequestParser(object):
+class RequestParser:
 
     _url_regex = None
 
@@ -36,15 +36,16 @@ class RequestParser(object):
             # unnamed groups, we want to use either groups
             # or groupdict but not both.
             if cls._url_regex.groupindex:
-                parameters = dict(
+                parameters = {
                     (str(k), _unquote_or_none(v))
-                    for (k, v) in match.groupdict().items())
+                    for (k, v) in match.groupdict().items()
+                    }
             else:
                 parameters = [
                     _unquote_or_none(s)
                     for s in match.groups()
                 ]
         else:
-            parameters = dict()
+            parameters = {}
 
         return parameters

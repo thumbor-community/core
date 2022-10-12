@@ -50,8 +50,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Thumbor Community Core'
-copyright = u'Thumbor Community'
+project = 'Thumbor Community Core'
+copyright = 'Thumbor Community'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -248,8 +248,8 @@ latex_elements = {
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Thumbor Community', u'Thumbor Community Documentation',
-   u'@masom', 'Thumbor Community', 'Thumbor Community Extensions',
+  ('index', 'Thumbor Community', 'Thumbor Community Documentation',
+   '@masom', 'Thumbor Community', 'Thumbor Community Extensions',
    'Miscellaneous'),
 ]
 

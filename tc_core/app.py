@@ -4,9 +4,6 @@
 # Use of this source code is governed by the MIT license that can be
 # found in the LICENSE file.
 
-import tornado.web
-import tornado.ioloop
-
 from thumbor.app import ThumborServiceApp
 from thumbor.handlers import ContextHandler
 from thumbor.utils import logger
@@ -46,7 +43,7 @@ class App(ThumborServiceApp):
 
             ContextHandler.initialize = initialize
 
-        super(App, self).__init__(context)
+        super().__init__(context)
 
     def get_handlers(self):
         '''Return a list of tornado web handlers.
@@ -67,6 +64,6 @@ class App(ThumborServiceApp):
 
                 handlers.append(handler)
 
-        handlers.extend(super(App, self).get_handlers())
+        handlers.extend(super().get_handlers())
 
         return handlers
